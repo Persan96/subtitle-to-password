@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ $# -ne 4 ]; then
+if [ $# -ne 4 ]; then #If number of arguments is anything else than 4, stop and show usage description
 	echo "usage: $0 <file1.srt> <file2.srt> <word size> <amount of words>"
 	exit 1
 fi
