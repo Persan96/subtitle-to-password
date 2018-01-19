@@ -22,10 +22,14 @@ create_password() #Create password from the two entered files
 	cat $2 | grep -oE "( |$)[a-z]{$3}( |$)" | sort -nr > secondwordresult
 	COUNTER=0
 	while [ $COUNTER -lt "$4" ]; do
-		shuf -n 1 firstwordresult >> prepass
-		let COUNTER=COUNTER+1
-		shuf -n 1 secondwordresult >> prepass
-		let COUNTER=COUNTER+1
+		if [ $COUNTER -lt "$4" ]; then
+			shuf -n 1 firstwordresult >> prepass
+			let COUNTER=COUNTER+1
+		fi
+		if [ $COUNTER -lt "$4" ]; then
+			shuf -n 1 secondwordresult >> prepass
+			let COUNTER=COUNTER+1
+		fi
 	done
 	cat prepass | grep -oE [a-z]+ | tr -d '\n' > password.txt
 	rm firstwordresult
